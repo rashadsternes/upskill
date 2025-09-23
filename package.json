@@ -9,6 +9,10 @@
     "lint": "next lint"
   },
   "packageManager": "npm@10.9.2",
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom"
+  },
   "dependencies": {
     "next": "15.3.5",
     "next-auth": "^5.0.0-beta.29",
