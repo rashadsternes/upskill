@@ -1,14 +1,15 @@
 "use client";
 import React, { useActionState, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import MDEditor from "@uiw/react-md-editor";
 import { Button } from "@/components/ui/button";
-import { Send } from "lucide-react";
+import { createIdea } from "@/lib/actions";
 import { formSchema } from "@/lib/validation";
+import MDEditor from "@uiw/react-md-editor";
+import { Send } from "lucide-react";
 import { z } from "zod";
 import { useToast } from "@/hooks/use-toast";
-import { useRouter } from "next/navigation";
 
 const StartupForm = () => {
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -27,17 +28,17 @@ const StartupForm = () => {
       };
 
       await formSchema.parseAsync(formValues);
-      console.log(formValues);
-      // const result = await createIdea(prevState, formData, pitch);
 
-      // if (result.status === "SUCCESS") {
-      //   toast({
-      //     title: "Success",
-      //     description: "Your startup idea has been submitted successfully!",
-      //   });
-      //   router.push(`/startup/${result._id}`);
-      // }
-      // return result;
+      const result = await createIdea(prevState, formData, pitch);
+
+      if (result.status === "SUCCESS") {
+        toast({
+          title: "Success",
+          description: "Your startup idea has been submitted successfully!",
+        });
+        router.push(`/startup/${result._id}`);
+      }
+      return result;
     } catch (error) {
       if (error instanceof z.ZodError) {
         const fieldErrors = error.flatten().fieldErrors;
