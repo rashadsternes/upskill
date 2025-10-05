@@ -12,12 +12,18 @@
     "typegen": "sanity schema extract --path=./sanity/extract.json && sanity typegen generate"
   },
   "packageManager": "npm@10.9.2",
+  "overrides": {
+    "react": "$react",
+    "react-dom": "$react-dom",
+    "next": "$next"
+  },
   "dependencies": {
     "@radix-ui/react-slot": "^1.2.3",
     "@radix-ui/react-toast": "^1.2.15",
     "@sanity/client": "^7.11.2",
     "@sanity/image-url": "^1.2.0",
     "@sanity/vision": "^4.10.1",
+    "@sentry/nextjs": "^10.17.0",
     "@tailwindcss/typography": "^0.5.18",
     "@uiw/react-md-editor": "^4.0.8",
     "autoprefixer": "^10.4.21",
