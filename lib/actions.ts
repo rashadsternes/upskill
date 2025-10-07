@@ -4,7 +4,12 @@ import slugify from "slugify";
 import { parseServerActionResponse } from "@/lib/utils";
 import { writeClient } from "@/sanity/lib/write-client";
 
-export const createIdea = async (state: any, form: FormData, pitch: string) => {
+export const createIdea = async (
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  _state: any,
+  form: FormData,
+  pitch: string
+) => {
   const session = await auth();
 
   if (!session)

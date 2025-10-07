@@ -6,6 +6,7 @@ import { Button } from "./ui/button";
 import { Author, Startup } from "@/sanity/types";
 import { Skeleton } from "@/components/ui/skeleton";
 import { cn } from "@/lib/utils";
+import defaultAvatar from "../public/default-avatar.png";
 
 export type StartupCardType = Omit<Startup, "author"> & { author?: Author };
 
@@ -41,8 +42,8 @@ const StartupCard = ({ post }: { post: StartupCardType }) => {
         </div>
         <Link href={`/user/${author?._id}`}>
           <Image
-            src={author?.image!}
-            alt={author?.name!}
+            src={author?.image ?? defaultAvatar}
+            alt={author?.name ?? "User avatar"}
             width={48}
             height={48}
             className="rounded-full"
